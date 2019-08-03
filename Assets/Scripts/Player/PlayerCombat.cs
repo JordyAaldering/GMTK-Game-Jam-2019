@@ -27,11 +27,11 @@ namespace Player
             float mouseX = Input.mousePosition.x;
             float mouseY = Input.mousePosition.y;
             
-            RotateWeapon(mouseX, mouseY);
-            AimCrosshair(mouseX, mouseY);
+            Rotate(mouseX, mouseY);
+            Aim(mouseX, mouseY);
         }
 
-        private void RotateWeapon(float mouseX, float mouseY)
+        private void Rotate(float mouseX, float mouseY)
         {
             Vector3 objectPos = _cam.WorldToScreenPoint(_weapon.position);
             float posX = mouseX - objectPos.x;
@@ -51,7 +51,7 @@ namespace Player
             }
         }
 
-        private void AimCrosshair(float mouseX, float mouseY)
+        private void Aim(float mouseX, float mouseY)
         {
             if (Input.GetButton("Fire2"))
             {
@@ -66,7 +66,7 @@ namespace Player
                 
                 if (Input.GetButtonDown("Fire1"))
                 {
-                    ShootBullet(aim);
+                    Shoot(aim);
                 }
             }
             else
@@ -75,10 +75,11 @@ namespace Player
             }
         }
 
-        private void ShootBullet(Vector3 direction)
+        private void Shoot(Vector3 direction)
         {
             GameObject bullet = Instantiate(_bulletPrefab, _weapon.transform.position, Quaternion.identity);
             bullet.GetComponent<Rigidbody2D>().velocity = direction * _bulletSpeed;
+            bullet.GetComponent<Bullet>().parent = gameObject;
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             bullet.transform.Rotate(0f, 0f, angle);

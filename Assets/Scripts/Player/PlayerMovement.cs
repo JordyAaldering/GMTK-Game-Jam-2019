@@ -6,6 +6,7 @@ namespace Player
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] private float _moveSpeed;
+        [SerializeField] private float _runSpeed;
         
         private Rigidbody2D _rb;
         private SpriteRenderer _sr;
@@ -29,17 +30,20 @@ namespace Player
                 Input.GetAxis("Horizontal"), 
                 Input.GetAxis("Vertical")
             );
-            
-            _rb.velocity = movement * _moveSpeed;
 
-            Animate(movement);
+            bool isRunning = Input.GetAxisRaw("Run") > 0f;
+            _rb.velocity = movement * (isRunning ? _runSpeed : _moveSpeed);
+
+            Animate(movement, isRunning);
         }
 
-        private void Animate(Vector2 movement)
+        private void Animate(Vector2 movement, bool isRunning)
         {
             if (movement != Vector2.zero)
             {
                 _anim.SetBool("IsWalking", true);
+                _anim.SetBool("IsRunning", isRunning);
+                
                 if (Mathf.Abs(movement.x) > 0f)
                 {
                     _sr.flipX = movement.x > 0f;
@@ -48,6 +52,7 @@ namespace Player
             else
             {
                 _anim.SetBool("IsWalking", false);
+                _anim.SetBool("IsRunning", false);
             }
         }
     }
