@@ -25,21 +25,16 @@ namespace Player
 
         private void Update()
         {
-            float mouseX = Input.mousePosition.x;
-            float mouseY = Input.mousePosition.y;
-            
-            Rotate(mouseX, mouseY);
-            Aim(mouseX, mouseY);
+            Rotate();
+            Aim();
         }
 
-        private void Rotate(float mouseX, float mouseY)
+        private void Rotate()
         {
-            Vector3 objectPos = _cam.WorldToScreenPoint(_weapon.position);
-            float posX = mouseX - objectPos.x;
-            float posY = mouseY - objectPos.y;
- 
-            float angle = Mathf.Atan2(posY, posX) * Mathf.Rad2Deg;
-
+            Vector2 weaponPos = _cam.WorldToScreenPoint(_weapon.position);
+            float angle = Mathf.Atan2(Input.mousePosition.y - weaponPos.y, Input.mousePosition.x - weaponPos.x);
+            angle *= Mathf.Rad2Deg;
+            
             if (angle > -90f && angle < 90f)
             {
                 _weaponSr.flipX = false;
@@ -52,21 +47,21 @@ namespace Player
             }
         }
 
-        private void Aim(float mouseX, float mouseY)
+        private void Aim()
         {
             if (Input.GetButton("Fire2"))
             {
                 _crosshair.gameObject.SetActive(true);
-                
-                float posX = mouseX / Screen.width;
-                float posY = mouseY / Screen.height;
 
-                Vector3 aim = new Vector3(posX - 0.5f, posY - 0.5f, 0f).normalized;
-                _crosshair.localPosition = aim * _crosshairDistance;
+                Vector2 mousePos = _cam.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 weaponPos = _weapon.position;
+                Vector2 direction = (mousePos - weaponPos).normalized;
+                
+                _crosshair.localPosition = direction * _crosshairDistance;
                 
                 if (Input.GetButtonDown("Fire1"))
                 {
-                    Shoot(aim);
+                    Shoot(direction);
                 }
             }
             else
@@ -75,13 +70,18 @@ namespace Player
             }
         }
 
-        private void Shoot(Vector3 direction)
+        private void Shoot(Vector2 direction)
         {
-            GameObject bullet = Instantiate(_bulletPrefab, _weapon.transform.position, Quaternion.identity);
+            GameObject bullet = Instantiate(_bulletPrefab, _weapon.position, Quaternion.identity);
             bullet.GetComponent<Rigidbody2D>().velocity = direction * _bulletSpeed;
             bullet.GetComponent<Bullet>().parent = gameObject;
 
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Vector2 objectPos = _cam.WorldToScreenPoint(_weapon.position);
+            float posX = Input.mousePosition.x - objectPos.x;
+            float posY = Input.mousePosition.y - objectPos.y;
+ 
+            float angle = Mathf.Atan2(posY, posX) * Mathf.Rad2Deg;
+
             bullet.transform.Rotate(0f, 0f, angle);
             
             Destroy(bullet, 2f);

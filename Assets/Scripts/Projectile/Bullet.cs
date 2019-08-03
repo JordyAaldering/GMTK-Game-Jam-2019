@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Enemy;
+using Player;
+using UnityEngine;
 
 namespace Projectile
 {
@@ -12,10 +14,12 @@ namespace Projectile
             {
                 if (other.CompareTag("Player"))
                 {
+                    other.GetComponent<PlayerManager>().Die();
                     Destroy(gameObject);
                 }
                 else if (other.CompareTag("Enemy"))
                 {
+                    other.GetComponent<EnemyManager>().Die();
                     Destroy(gameObject);
                 }
                 else if (other.CompareTag("Wall"))
