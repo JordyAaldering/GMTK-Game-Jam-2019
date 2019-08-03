@@ -8,8 +8,10 @@ namespace Player
     {
         [SerializeField] private GameObject _weapon;
         [SerializeField] private GameObject _bulletPrefab;
-        
         [SerializeField] private GameObject _crosshair;
+
+        [SerializeField] private float _crosshairDistance;
+        [SerializeField] private float _bulletSpeed;
 
         private Camera _cam;
 
@@ -45,9 +47,9 @@ namespace Player
                 
                 float posX = mouseX / Screen.width;
                 float posY = mouseY / Screen.height;
-
-                Vector3 aim = new Vector3(posX - 0.5f, posY - 0.5f, 0f);
-                _crosshair.transform.localPosition = aim.normalized * 1.3f;
+                Vector3 aim = new Vector3(posX - 0.5f, posY - 0.5f, 0f).normalized;
+                
+                _crosshair.transform.localPosition = aim * _crosshairDistance;
                 
                 if (Input.GetButtonDown("Fire1"))
                 {
@@ -63,7 +65,12 @@ namespace Player
         private void ShootBullet(Vector3 direction)
         {
             GameObject bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
-            bullet.GetComponent<Rigidbody2D>().velocity = direction;
+            bullet.GetComponent<Rigidbody2D>().velocity = direction * _bulletSpeed;
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            bullet.transform.Rotate(0f, 0f, angle);
+            
+            Destroy(bullet, 2f);
         }
     }
 }

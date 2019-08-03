@@ -26,8 +26,18 @@ namespace Player
             Vector3 movement = new Vector3(horizontal, vertical, 0f);
             transform.Translate(movement * Time.deltaTime);
 
-            _sr.flipX = horizontal > 0f;
-            _anim.SetBool("IsWalking", movement != Vector3.zero);
+            if (movement != Vector3.zero)
+            {
+                _anim.SetBool("IsWalking", true);
+                if (Mathf.Abs(horizontal) > 0f)
+                {
+                    _sr.flipX = horizontal > 0f;
+                }
+            }
+            else
+            {
+                _anim.SetBool("IsWalking", false);
+            }
         }
     }
 }
