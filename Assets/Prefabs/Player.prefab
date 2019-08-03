@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5593449067056133707}
   - component: {fileID: 5593449067056133708}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5593449067094459417}
   - component: {fileID: 5593449067094459418}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 5593449067107693481}
   - component: {fileID: 5593449067107693480}
   - component: {fileID: 5593449067107693479}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 4594007872512940192}
   - component: {fileID: 5593449067609245331}
   - component: {fileID: 5593449067609245332}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}

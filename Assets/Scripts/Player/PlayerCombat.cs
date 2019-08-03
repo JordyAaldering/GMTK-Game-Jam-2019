@@ -1,17 +1,18 @@
 ﻿#pragma warning disable 0649
 using Extensions;
+using Projectile;
 using UnityEngine;
 
 namespace Player
 {
     public class PlayerCombat : MonoBehaviour
     {
+        [SerializeField] private float _crosshairDistance;
+        [SerializeField] private float _bulletSpeed;
+
         [SerializeField] private Transform _weapon;
         [SerializeField] private Transform _crosshair;
         [SerializeField] private GameObject _bulletPrefab;
-
-        [SerializeField] private float _crosshairDistance;
-        [SerializeField] private float _bulletSpeed;
 
         private SpriteRenderer _weaponSr;
         private Camera _cam;
@@ -61,7 +62,6 @@ namespace Player
                 float posY = mouseY / Screen.height;
 
                 Vector3 aim = new Vector3(posX - 0.5f, posY - 0.5f, 0f).normalized;
-                
                 _crosshair.localPosition = aim * _crosshairDistance;
                 
                 if (Input.GetButtonDown("Fire1"))
