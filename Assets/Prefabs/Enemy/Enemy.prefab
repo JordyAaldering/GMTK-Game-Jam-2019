@@ -229,6 +229,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49617a3a76e0432499517a3cd9108fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moveSpeed: 2
+  _viewDistance: 10
+  _minDistance: 3
 --- !u!114 &8845792254457562040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cooldown: 5
-  _viewDistance: 10
+  _viewDistance: 5
   _projectileSpeed: 10
   _bow: {fileID: 910109990748513270}
   _arrowPrefab: {fileID: 6958223001680417636, guid: a1d2dfeaeab37e440b06b4ea0d2f096e,
