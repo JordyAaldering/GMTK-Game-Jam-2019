@@ -1,37 +1,48 @@
-﻿using UnityEngine;
+﻿#pragma warning disable 0649
+using UnityEngine;
 
 namespace Player
 {
     public class PlayerMovement : MonoBehaviour
     {
+        [SerializeField] private float _moveSpeed;
+        
+        private Rigidbody2D _rb;
         private SpriteRenderer _sr;
         private Animator _anim;
 
         private void Awake()
         {
+            _rb = GetComponent<Rigidbody2D>();
             _sr = GetComponentInChildren<SpriteRenderer>();
             _anim = GetComponentInChildren<Animator>();
         }
 
         private void Update()
         {
-            MovePlayer();
+            Move();
         }
 
-        private void MovePlayer()
+        private void Move()
         {
-            float horizontal = Input.GetAxis("Horizontal");
-            float vertical = Input.GetAxis("Vertical");
+            Vector2 movement = new Vector2(
+                Input.GetAxis("Horizontal"), 
+                Input.GetAxis("Vertical")
+            );
             
-            Vector3 movement = new Vector3(horizontal, vertical, 0f);
-            transform.Translate(movement * Time.deltaTime);
+            _rb.velocity = movement * _moveSpeed;
 
-            if (movement != Vector3.zero)
+            Animate(movement);
+        }
+
+        private void Animate(Vector2 movement)
+        {
+            if (movement != Vector2.zero)
             {
                 _anim.SetBool("IsWalking", true);
-                if (Mathf.Abs(horizontal) > 0f)
+                if (Mathf.Abs(movement.x) > 0f)
                 {
-                    _sr.flipX = horizontal > 0f;
+                    _sr.flipX = movement.x > 0f;
                 }
             }
             else
