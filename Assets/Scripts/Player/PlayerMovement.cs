@@ -15,6 +15,11 @@ namespace Player
 
         private void Update()
         {
+            MovePlayer();
+        }
+
+        private void MovePlayer()
+        {
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
             
