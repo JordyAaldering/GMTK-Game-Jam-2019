@@ -1,16 +1,15 @@
 ﻿#pragma warning disable 0649
 using System.Collections;
 using Extensions;
-using Projectile;
 using UnityEngine;
 
 namespace Enemy
 {
     public class EnemyCombat : MonoBehaviour
     {
-        [SerializeField] private float _viewDistance;
         [SerializeField] private float _cooldown;
-        [SerializeField] private float _arrowSpeed;
+        [SerializeField] private float _viewDistance;
+        [SerializeField] private float _projectileSpeed;
 
         [SerializeField] private Transform _bow;
         [SerializeField] private GameObject _arrowPrefab;
@@ -59,8 +58,8 @@ namespace Enemy
             StartCoroutine(SetShoot());
             
             GameObject arrow = Instantiate(_arrowPrefab, _bow.transform.position, Quaternion.identity);
-            arrow.GetComponent<Rigidbody2D>().velocity = -direction.normalized * _arrowSpeed;
-            arrow.GetComponent<Arrow>().parent = gameObject;
+            arrow.GetComponent<Rigidbody2D>().velocity = -direction.normalized * _projectileSpeed;
+            arrow.GetComponent<Projectile>().parent = gameObject;
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             arrow.transform.Rotate(0f, 0f, angle);

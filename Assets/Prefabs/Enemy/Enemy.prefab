@@ -241,9 +241,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7d4d6b6c9662142a6d92a04d7ea9b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _viewDistance: 10
   _cooldown: 5
-  _arrowSpeed: 5
+  _viewDistance: 10
+  _projectileSpeed: 10
   _bow: {fileID: 910109990748513270}
   _arrowPrefab: {fileID: 6958223001680417636, guid: a1d2dfeaeab37e440b06b4ea0d2f096e,
     type: 3}
