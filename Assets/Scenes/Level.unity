@@ -677,6 +677,7 @@ GameObject:
   - component: {fileID: 615006546}
   - component: {fileID: 615006548}
   - component: {fileID: 615006547}
+  - component: {fileID: 615006549}
   m_Layer: 5
   m_Name: Game Over Panel
   m_TagString: Untagged
@@ -743,6 +744,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615006545}
   m_CullTransparentMesh: 0
+--- !u!114 &615006549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615006545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7446c402bdcd584190deeee8a128d3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _heart: {fileID: 1154044304}
+  _heartDestroyEffect: {fileID: 5890631360237055014, guid: 1854765d43bff634996e147cf21acd71,
+    type: 3}
 --- !u!61 &729940409 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 1549605974161106576, guid: bbf5f4180fa38454dabf774898fcd5cc,
@@ -2498,5 +2514,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 6501845630823047037, guid: 9cd22fff4a77b4b45baf9eff8bd2a8cf,
+        type: 3}
+      propertyPath: _dropsText
+      value: 
+      objectReference: {fileID: 1001299908}
+    - target: {fileID: 6501845630823047037, guid: 9cd22fff4a77b4b45baf9eff8bd2a8cf,
+        type: 3}
+      propertyPath: _gameOverPanel
+      value: 
+      objectReference: {fileID: 615006545}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cd22fff4a77b4b45baf9eff8bd2a8cf, type: 3}
