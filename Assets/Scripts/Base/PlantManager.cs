@@ -129,7 +129,7 @@ namespace Base
 
         public void CheckDeath()
         {
-            if (_currentRequired < _requiredCost[_sceneStartLevel])
+            if (_currentRequired < _requiredCost[_sceneStartLevel] && CurrentLevel > 0)
             {
                 CurrentLevel--;
             }
