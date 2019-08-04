@@ -35,18 +35,17 @@ namespace Base
 
         private void Awake()
         {
-            // todo: Only for testing!
-            PlayerPrefs.SetInt("PlantLevel", 0);
-
             _player = GameObject.FindGameObjectWithTag("Player").transform;
             _base = FindObjectOfType<BaseManager>();
             _sr = GetComponent<SpriteRenderer>();
 
             Initialize();
 
-            if (_sceneStartLevel == 0 && _base.waterDrops == 0)
+            if (PlayerPrefs.GetInt("Tutorial", 0) == 0)
             {
                 StartCoroutine(ShowTutorial());
+                
+                PlayerPrefs.SetInt("Tutorial", 1);
             }
         }
 

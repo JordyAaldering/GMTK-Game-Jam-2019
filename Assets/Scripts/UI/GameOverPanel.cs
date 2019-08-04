@@ -20,6 +20,7 @@ namespace UI
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                PlayerPrefs.SetInt("Day", PlayerPrefs.GetInt("Day") + 1);
                 SceneManager.LoadScene(0);
             }
         }

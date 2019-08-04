@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
-                other.GetComponent<PlayerManager>().Die();
+                FindObjectOfType<PlayerManager>().Die();
                 Destroy(gameObject);
             }
             else if (other.CompareTag("Enemy"))

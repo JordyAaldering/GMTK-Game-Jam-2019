@@ -11,6 +11,7 @@ namespace Base
         [SerializeField] private float _y = 4f;
 
         [SerializeField] private Text _dropsText;
+        [SerializeField] private GameObject _dayText;
         
         public int waterDrops
         {
@@ -21,13 +22,20 @@ namespace Base
                 _dropsText.text = value.ToString();
             }
         }
-        
+
         private Transform _player;
 
         private void Awake()
         {
             _player = GameObject.FindGameObjectWithTag("Player").transform;
             _dropsText.text = waterDrops.ToString();
+
+            int day = PlayerPrefs.GetInt("Day", 1);
+            if (day > 1)
+            {
+                _dayText.GetComponent<Text>().text = $"Day {day}";
+                _dayText.SetActive(true);
+            }
         }
 
         private void Update()

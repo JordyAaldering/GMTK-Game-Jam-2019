@@ -11,11 +11,15 @@ namespace Enemy
 
         private Transform _player;
         private Rigidbody2D _rb;
+        private Animator _anim;
+        
+        private static readonly int IsWalking = Animator.StringToHash("IsWalking");
 
         private void Awake()
         {
             _player = GameObject.FindWithTag("Player").transform;
             _rb = GetComponent<Rigidbody2D>();
+            _anim = GetComponentInChildren<Animator>();
         }
         
         private void Update()
@@ -40,11 +44,13 @@ namespace Enemy
                 else
                 {
                     _rb.velocity = Vector2.zero;
+                    _anim.SetBool(IsWalking, false);
                 }
             }
             else
             {
                 _rb.velocity = Vector2.zero;
+                _anim.SetBool(IsWalking, false);
             }
         }
 
@@ -52,6 +58,8 @@ namespace Enemy
         {
             Vector2 direction = (_player.position - transform.position).normalized;
             _rb.velocity = direction * _moveSpeed;
+            
+            _anim.SetBool(IsWalking, true);
         }
     }
 }

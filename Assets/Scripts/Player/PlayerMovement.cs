@@ -11,6 +11,9 @@ namespace Player
         private Rigidbody2D _rb;
         private SpriteRenderer _sr;
         private Animator _anim;
+        
+        private static readonly int IsWalking = Animator.StringToHash("IsWalking");
+        private static readonly int IsRunning = Animator.StringToHash("IsRunning");
 
         private void Awake()
         {
@@ -41,8 +44,8 @@ namespace Player
         {
             if (movement != Vector2.zero)
             {
-                _anim.SetBool("IsWalking", true);
-                _anim.SetBool("IsRunning", isRunning);
+                _anim.SetBool(IsWalking, true);
+                _anim.SetBool(IsRunning, isRunning);
                 
                 if (Mathf.Abs(movement.x) > 0f)
                 {
@@ -51,8 +54,8 @@ namespace Player
             }
             else
             {
-                _anim.SetBool("IsWalking", false);
-                _anim.SetBool("IsRunning", false);
+                _anim.SetBool(IsWalking, false);
+                _anim.SetBool(IsRunning, false);
             }
         }
     }
