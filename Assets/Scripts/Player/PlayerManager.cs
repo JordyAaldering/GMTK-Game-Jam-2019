@@ -24,6 +24,8 @@ namespace Player
         {
             _gameOverPanel.SetActive(true);
 
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            
             GetComponent<PlayerMovement>().enabled = false;
             GetComponent<PlayerCombat>().enabled = false;
         }

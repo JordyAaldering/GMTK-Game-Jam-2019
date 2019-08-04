@@ -37,6 +37,10 @@ namespace Enemy
                 {
                     Move();
                 }
+                else
+                {
+                    _rb.velocity = Vector2.zero;
+                }
             }
             else
             {
