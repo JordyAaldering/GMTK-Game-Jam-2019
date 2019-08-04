@@ -1,13 +1,17 @@
 ﻿#if (UNITY_EDITOR)
-
 using System.IO;
 using UnityEngine;
 
 public class ScreenShotter : MonoBehaviour
 {
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
+
     private void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.F12))
+        if (Input.GetMouseButtonDown(3))
         {
             DirectoryInfo di = new DirectoryInfo("Screenshots");
             
