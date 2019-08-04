@@ -236,6 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _x: 8
   _y: 4
+  _dropsText: {fileID: 1001299908}
 --- !u!1001 &52943370
 PrefabInstance:
   m_ObjectHideFlags: 0

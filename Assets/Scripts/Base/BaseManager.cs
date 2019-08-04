@@ -27,6 +27,7 @@ namespace Base
         private void Awake()
         {
             _player = GameObject.FindGameObjectWithTag("Player").transform;
+            _dropsText.text = waterDrops.ToString();
         }
 
         private void Update()

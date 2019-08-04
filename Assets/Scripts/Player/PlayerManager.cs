@@ -1,4 +1,5 @@
 ﻿#pragma warning disable 0649
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,11 @@ namespace Player
                 PlayerPrefs.SetInt("WaterDrops", value);
                 _dropsText.text = value.ToString();
             }
+        }
+
+        private void Awake()
+        {
+            _dropsText.text = waterDrops.ToString();
         }
 
         public void Die()
