@@ -1,5 +1,4 @@
 ﻿#pragma warning disable 0649
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +8,8 @@ namespace Player
     {
         [SerializeField] private Text _dropsText;
         [SerializeField] private GameObject _gameOverPanel;
+        
+        public bool IsDead { get; private set; }
 
         public int waterDrops
         {
@@ -27,6 +28,7 @@ namespace Player
 
         public void Die()
         {
+            IsDead = true;
             _gameOverPanel.SetActive(true);
 
             GameObject player = GameObject.FindGameObjectWithTag("Player");
