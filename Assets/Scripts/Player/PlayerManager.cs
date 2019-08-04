@@ -9,14 +9,13 @@ namespace Player
         [SerializeField] private Text _dropsText;
         [SerializeField] private GameObject _gameOverPanel;
 
-        private int _waterDrops;
         public int waterDrops
         {
-            get => _waterDrops;
+            get => PlayerPrefs.GetInt("WaterDrops");
             set
             {
-                _waterDrops = value;
-                _dropsText.text = _waterDrops.ToString();
+                PlayerPrefs.SetInt("WaterDrops", value);
+                _dropsText.text = value.ToString();
             }
         }
 
@@ -24,10 +23,12 @@ namespace Player
         {
             _gameOverPanel.SetActive(true);
 
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
             
-            GetComponent<PlayerMovement>().enabled = false;
-            GetComponent<PlayerCombat>().enabled = false;
+            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            
+            player.GetComponent<PlayerMovement>().enabled = false;
+            player.GetComponent<PlayerCombat>().enabled = false;
         }
     }
 }
